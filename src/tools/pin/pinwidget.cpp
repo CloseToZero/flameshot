@@ -31,6 +31,7 @@ PinWidget::PinWidget(const QPixmap &pixmap, QWidget *parent) :
                    | Qt::Tool);
     //set the bottom widget background transparent
     setAttribute(Qt::WA_TranslucentBackground);
+    setAttribute(Qt::WA_DeleteOnClose);
 
     ConfigHandler conf;
     m_baseColor = conf.uiMainColorValue();
