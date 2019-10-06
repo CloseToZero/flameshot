@@ -33,6 +33,7 @@
 #include "src/utils/screenshotsaver.h"
 #include "src/core/controller.h"
 #include "src/widgets/capture/modificationcommand.h"
+#include "src/tools/pin/pinwidget.h"
 #include <QUndoView>
 #include <QScreen>
 #include <QGuiApplication>
@@ -767,6 +768,7 @@ void CaptureWidget::downResize() {
 }
 
 void CaptureWidget::initShortcuts() {
+    new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_T), this, SLOT(pinScreenshot()));
     new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q), this, SLOT(close()));
     new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S), this, SLOT(saveScreenshot()));
     new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_C), this, SLOT(copyScreenshot()));
@@ -876,6 +878,15 @@ void CaptureWidget::saveScreenshot() {
         ScreenshotSaver().saveToFilesystem(pixmap(), m_context.savePath);
     }
     close();
+}
+
+void CaptureWidget::pinScreenshot()
+{
+    PinWidget *pinWidget = new PinWidget(pixmap());
+    close();
+    pinWidget->move(m_dragStartPoint.x(),
+                    m_dragStartPoint.y());
+    pinWidget->show();
 }
 
 void CaptureWidget::undo() {
