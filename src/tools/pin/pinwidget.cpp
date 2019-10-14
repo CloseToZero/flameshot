@@ -28,7 +28,8 @@ PinWidget::PinWidget(const QPixmap &pixmap, QWidget *parent) :
 {
     setWindowFlags(Qt::WindowStaysOnTopHint
                    | Qt::FramelessWindowHint
-                   | Qt::Tool);
+                   | Qt::Tool
+                   | Qt::X11BypassWindowManagerHint);
     //set the bottom widget background transparent
     setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_DeleteOnClose);
