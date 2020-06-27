@@ -17,6 +17,8 @@
 
 #include "arrowtool.h"
 
+#include <QPainterPath>
+
 namespace {
 
 #define PADDING_VALUE 2
